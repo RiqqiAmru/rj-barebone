@@ -1,0 +1,10 @@
+- HOW TO HANDLE EROR
+
+TYPE ERROR
+- NO GUL : TIdak ada no gul, salah no gul
+- seri : seri tidak ada di master, seri salah karena salah menaruh (beda dari seri yang ada di palet yang sama), seri salah tulis oleh folding
+- panjang : salah panjang
+
+
+
+- ketika gulungan terkena eror ootmatis, kemudian di edit, data error tidak terhapus

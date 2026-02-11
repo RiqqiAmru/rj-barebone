@@ -1,0 +1,247 @@
+body {
+  font-family: sans-serif;
+  max-width: 700px;
+  margin: 24px auto;
+}
+form {
+  display: grid;
+  gap: 12px;
+}
+label {
+  display: grid;
+  gap: 6px;
+}
+input {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+button {
+  padding: 10px;
+  border: 0;
+  border-radius: 6px;
+  background: #0b5;
+  color: #fff;
+  cursor: pointer;
+}
+.status {
+  margin-top: 12px;
+}
+.pallet {
+  margin-top: 16px;
+  padding: 10px;
+  border: 1px solid #aaa;
+  border-radius: 6px;
+}
+
+.pallet-body.hide {
+  display: none;
+}
+.pallet-body.show {
+  display: block;
+}
+.pallet-header {
+  background: #eee;
+  padding: 6px;
+  cursor: pointer;
+}
+strong {
+  display: flex;
+  justify-content: space-between; /* kiri-kanan */
+  align-items: center; /* rata vertikal */
+  width: 100%; /* biar penuh */
+}
+.mark-buttons {
+  position: fixed; /* selalu mengambang */
+  left: 10px; /* di sisi kiri layar */
+  top: 60%; /* kira-kira tengah vertikal */
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.mark-buttons button {
+  padding: 8px 12px;
+  font-size: 16px;
+  border-radius: 4px;
+  border: none;
+  background: #aaee;
+  cursor: pointer;
+}
+
+.mark-buttons button:hover {
+  background: #ccc;
+}
+
+.mark-buttons button {
+  pointer-events: auto;
+  user-select: none;
+}
+.mark-buttons button:focus {
+  outline: none;
+}
+
+#status {
+  position: fixed;
+  bottom: 50%;
+  left: 30%;
+  transform: translateX(-50%);
+  background: rgba(0, 0, 0, 0.8);
+  color: white;
+  padding: 10px 16px;
+  border-radius: 6px;
+  font-size: 14px;
+  z-index: 9999;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s ease;
+}
+#status.show {
+  opacity: 1;
+}
+
+.error-cell {
+  color: red;
+}
+
+.error-flag {
+  color: red;
+  font-weight: bold;
+  margin-left: 4px;
+  cursor: pointer;
+}
+
+.pallet-error {
+  background: #ffe5e5 !important;
+}
+
+.header-error-flag {
+  color: red;
+  font-weight: bold;
+  margin-left: 6px;
+}
+
+.pallet-verified-ok {
+  background: #d4f8d4 !important; /* hijau muda */
+}
+
+.pallet-verified-error {
+  background: #ffd6d6 !important; /* merah muda */
+}
+
+/* Overlay gelap di belakang popup */
+#manual-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.45);
+  z-index: 9998;
+  display: none;
+}
+
+/* Popup utama */
+#manual-popup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 85%;
+  max-width: 360px;
+  background: #fff;
+  border-radius: 12px;
+  padding: 16px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+  z-index: 9999;
+  display: none;
+  animation: popupFade 0.2s ease-out;
+}
+
+/* Animasi kecil biar smooth */
+@keyframes popupFade {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -48%);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, -50%);
+  }
+}
+
+/* Judul popup */
+#manual-popup h3 {
+  margin-top: 0;
+  margin-bottom: 12px;
+  font-size: 18px;
+  text-align: center;
+}
+
+/* Input */
+#manual-popup input {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  margin-bottom: 14px;
+}
+
+/* Tombol */
+.manual-btn {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  border-radius: 6px;
+  border: none;
+  margin-top: 6px;
+  cursor: pointer;
+}
+
+.manual-save {
+  background: #4caf50;
+  color: white;
+}
+
+.manual-cancel {
+  background: #ccc;
+}
+
+.manual-verify {
+  background: #2196f3;
+  color: white;
+}
+
+/* Info salah/benar */
+.manual-info {
+  background: #f8f8f8;
+  padding: 10px;
+  border-radius: 6px;
+  margin-bottom: 10px;
+  font-size: 14px;
+}
+
+.pallet-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  margin: 4px;
+  cursor: pointer;
+  background: #f7f7f7;
+}
+
+.pallet-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
+  gap: 6px;
+  margin-bottom: 12px;
+}
+
+.radiogroup{
+  display: flex;
+  justify-content: space-evenly;
+}
