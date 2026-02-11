@@ -73,10 +73,16 @@ const SERI_MASTER = {
 "5":"DN60",
 "6":"DN60",
 "7":"DN60",
-"8":"DN60"
-
-  
-    // dst sesuai kebutuhan
+"8":"DN60",
+"9":"DN60",
+"10":"DN60",
+"11":"DN60",
+"12":"DN60",
+"13":"SKB60",
+"14":"SKB60",
+"15":"SKB60",
+"16":"SKB60",
+"17":"SKB60"
   };
   
   // Fungsi untuk ambil jenis seri

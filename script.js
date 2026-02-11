@@ -313,8 +313,8 @@ document
     );
 
     const markInput = document.getElementById("mark").value;
-    const markInput2 = document.getElementById("mark2").value;
-    console.log(markInput, markInput2);
+    // const markInput2 = document.getElementById("mark2").value;
+    // console.log(markInput, markInput2);
     const mark =
       markInput && markInput.value ? markInput.value.trim() : "";
 
