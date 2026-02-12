@@ -303,7 +303,6 @@ document
   .addEventListener("submit", async (e) => {
     const data = new FormData(document
       .getElementById("data-form"));
-      console.log(data);
     e.preventDefault();
     const pallet = document.getElementById("pallet").value.trim();
     const noGul = document.getElementById("noGul").value.trim();
@@ -311,20 +310,21 @@ document
     const panjang = Number(
       document.getElementById("panjang").value.trim()
     );
+    const markInput = document.querySelector('input[name="mark2"]:checked').value;
 
-    const markInput = document.getElementById("mark").value;
+    // const markInput = document.getElementById("mark").value;
     // const markInput2 = document.getElementById("mark2").value;
-    // console.log(markInput, markInput2);
-    const mark =
-      markInput && markInput.value ? markInput.value.trim() : "";
-
+    // const mark =
+    // markInput && markInput.value ? markInput.value : "";
+    // console.log(mark);
     if (!pallet || !noGul || !seri || Number.isNaN(panjang)) {
       setStatus("Isi semua data dengan benar.", true);
       return;
     }
 
     const gulungan = { noGul, seri, panjang };
-    if (mark) gulungan.mark = mark; // hanya tambahkan jika ada
+    if (markInput) gulungan.mark = markInput; // hanya tambahkan jika ada
+console.log(gulungan, mark);
     try {
       await saveData(pallet, gulungan);
       await detectDuplicateNoGul();
@@ -759,7 +759,8 @@ Versi baru tersedia
 
 function setMark(value) {
   document.getElementById("mark").value = value;
-  markInput.focus();
+  console.log(document.getElementById("mark").value)
+  // markInput.focus();
 }
 
 function deleteMark() {

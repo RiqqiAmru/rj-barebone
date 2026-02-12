@@ -48,12 +48,12 @@
         z-index: 1000;
       "
     >
-      <div class="mark-buttons">
+      <!-- <div class="mark-buttons">
         <button onclick="setMark('_')">_</button>
         <button onclick="setMark('a')">a</button>
         <button onclick="setMark('<')"><</button>
         <button onclick="deleteMark2()">X</button>
-      </div>
+      </div> -->
 
       <form id="data-form">
         <input
@@ -64,19 +64,19 @@
         />
         <div class="radiogroup">
           <div>
-            <input type="radio" name="mark2" id="_">
+            <input type="radio" name="mark2" id="_" value="_">
             <label for="_">_</label>
           </div>
           <div class="div">
-            <input type="radio" name="mark2" id=">">
+            <input type="radio" name="mark2" id=">" value=">">
           <label for=">">></label>
           </div>
           <div class="div">
-            <input type="radio" name="mark2" id="a">
+            <input type="radio" name="mark2" id="a" value="a">
           <label for="a">a</label>
           </div>
           <div class="div">
-            <input type="radio" name="mark2" id="none"  checked>
+            <input type="radio" name="mark2" id="none" value=""  checked>
           <label for="none">none</label>
           </div>
         </div>
