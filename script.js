@@ -156,27 +156,30 @@ async function renderList() {
     const totalContainer = document.getElementById("total-benang");
 
     totalContainer.innerHTML = `
-<h3>Total Per Benang</h3>
-<table style="width:100%; border-collapse: collapse; margin-bottom:12px;">
+
+<table style="width:100%; border-collapse: collapse; margin:12px;">
 <thead>
 <tr style="background:#eee;">
-  <th style="border:1px solid #ccc; padding:6px;">Benang</th>
-  <th style="border:1px solid #ccc; padding:6px;">Total Gulung</th>
-  <th style="border:1px solid #ccc; padding:6px;">Total Panjang</th>
+  <th style="border:1px solid #ccc; ">Benang</th>
+  <th style="border:1px solid #ccc; ">Total Gulung</th>
+  <th style="border:1px solid #ccc; ">Total Panjang</th>
 </tr>
 </thead>
 <tbody>
+
 ${Object.keys(totals)
+
   .map(
     (key) => `
   <tr>
-    <td style="border:1px solid #ccc; padding:6px;">${key}</td>
-    <td style="border:1px solid #ccc; padding:6px;">${totals[key].gulung}</td>
-    <td style="border:1px solid #ccc; padding:6px;">${totals[key].panjang}</td>
+    <td style="border:1px solid #ccc; ">${key}</td>
+    <td style="border:1px solid #ccc; ">${totals[key].gulung}</td>
+    <td style="border:1px solid #ccc; ">${totals[key].panjang}</td>
   </tr>
 `
   )
   .join("")}
+  
 </tbody>
 </table>
 `;
@@ -208,10 +211,10 @@ ${p.seriJenis || ""} ${
 <table style="width:100%; border-collapse: collapse; margin-top:8px;">
 <thead>
  <tr style="background:#eee;">
-   <th style="border:1px solid #ccc; padding:6px;">No Gul</th>
-   <th style="border:1px solid #ccc; padding:6px;">Seri</th>
-   <th style="border:1px solid #ccc; padding:6px;">pjg </th>
-   <th style="border:1px solid #ccc; padding:6px;">Aksi</th>
+   <th style="border:1px solid #ccc; ">No Gul</th>
+   <th style="border:1px solid #ccc; ">Seri</th>
+   <th style="border:1px solid #ccc; ">pjg </th>
+   <th style="border:1px solid #ccc; ">Aksi</th>
  </tr>
 </thead>
 <tbody>
@@ -238,7 +241,7 @@ ${p.gulungan
 <tr>
 <!-- NO GUL -->
 <td class="${errNoGul | errManualNo ? "error-cell" : ""} "
-    style="border:1px solid #ccc; padding:6px;"
+    style="border:1px solid #ccc; "
     onmousedown="startHold('${p.pallet}', ${idx}, this)"
     onmouseup="endHold()"
     ontouchstart="startHold('${p.pallet}', ${idx}, this)"
@@ -248,7 +251,7 @@ ${p.gulungan
 
 <!-- SERI -->
 <td class="${errSeri | errManualSeri ? "error-cell" : ""}"
-    style="border:1px solid #ccc; padding:6px;"
+    style="border:1px solid #ccc; "
     onmousedown="startManualEdit('${p.pallet}', ${idx}, 'seri')">
     ${g.seri}
 </td>
@@ -256,11 +259,11 @@ ${p.gulungan
 <!-- PANJANG -->
 <td class="${errPjg | errManualPjg ? "error-cell" : ""}"
 onmousedown="startManualEdit('${p.pallet}', ${idx}, 'pjg')"
-    style="border:1px solid #ccc; padding:6px;">
+    style="border:1px solid #ccc; ">
     ${g.panjang}
 </td>
 
-<td style="border:1px solid #ccc; padding:6px;">
+<td style="border:1px solid #ccc; ">
   <button onclick="handleEdit('${p.pallet}', ${idx})">edit</button>
   <button onclick="handleDelete('${p.pallet}', ${idx})">Delete</button>
 </td>
@@ -324,7 +327,6 @@ document
 
     const gulungan = { noGul, seri, panjang };
     if (markInput) gulungan.mark = markInput; // hanya tambahkan jika ada
-console.log(gulungan, mark);
     try {
       await saveData(pallet, gulungan);
       await detectDuplicateNoGul();
@@ -1064,7 +1066,7 @@ async function startManualEdit(palletId, index, field) {
   const err = gul.errorsManual?.[field];
 
   // buka popup
-  openManualPopup();
+  // openManualPopup();
 
   const infoBox = document.getElementById("manual-info");
   const verifyBtn = document.getElementById("manual-verify-btn");
@@ -1146,3 +1148,15 @@ function groupPallets(pallets) {
 
   return groups;
 }
+
+
+const form2 = document.getElementById('data-form');
+  const radios = form.querySelectorAll('input[type="radio"]');
+
+  radios.forEach(radio => {
+    radio.addEventListener('change', () => {
+      if (radio.value !== '') {
+        form.requestSubmit(); // modern & clean
+      }
+    });
+  });
