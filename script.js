@@ -208,13 +208,13 @@ ${p.seriJenis || ""} ${
 </strong>
 </div>
 <div class="pallet-body ${isActive ? "show" : "hide"}">
-<table style="width:100%; border-collapse: collapse; margin-top:8px;">
+<table style="width:60%; border-collapse: collapse; margin-top:8px;">
 <thead>
  <tr style="background:#eee;">
-   <th style="border:1px solid #ccc; ">No Gul</th>
-   <th style="border:1px solid #ccc; ">Seri</th>
-   <th style="border:1px solid #ccc; ">pjg </th>
-   <th style="border:1px solid #ccc; ">Aksi</th>
+   <th style="border:1px solid #ccc; padding:6px;">No Gul</th>
+   <th style="border:1px solid #ccc; padding:6px;">Seri</th>
+   <th style="border:1px solid #ccc; padding:6px;">pjg </th>
+   <th style="border:1px solid #ccc; padding:6px;"></th>
  </tr>
 </thead>
 <tbody>
@@ -241,17 +241,17 @@ ${p.gulungan
 <tr>
 <!-- NO GUL -->
 <td class="${errNoGul | errManualNo ? "error-cell" : ""} "
-    style="border:1px solid #ccc; "
+    style="border:1px solid #ccc; padding:4px;"
     onmousedown="startHold('${p.pallet}', ${idx}, this)"
     onmouseup="endHold()"
     ontouchstart="startHold('${p.pallet}', ${idx}, this)"
     ontouchend="endHold()">
-    ${g.mark || ""} ${g.noGul} ${errorFlag}
+     ${g.noGul} ${errorFlag}
 </td>
 
 <!-- SERI -->
 <td class="${errSeri | errManualSeri ? "error-cell" : ""}"
-    style="border:1px solid #ccc; "
+    style="border:1px solid #ccc; padding:4px;"
     onmousedown="startManualEdit('${p.pallet}', ${idx}, 'seri')">
     ${g.seri}
 </td>
@@ -259,14 +259,15 @@ ${p.gulungan
 <!-- PANJANG -->
 <td class="${errPjg | errManualPjg ? "error-cell" : ""}"
 onmousedown="startManualEdit('${p.pallet}', ${idx}, 'pjg')"
-    style="border:1px solid #ccc; ">
+    style="border:1px solid #ccc; padding:4px;">
     ${g.panjang}
 </td>
+<td style="border:1px solid #ccc; padding:4px;">${g.mark || ""}</td>
 
-<td style="border:1px solid #ccc; ">
+<!--<td style="border:1px solid #ccc; ">
   <button onclick="handleEdit('${p.pallet}', ${idx})">edit</button>
   <button onclick="handleDelete('${p.pallet}', ${idx})">Delete</button>
-</td>
+</td>-->
 </tr>
 `;
   })
@@ -289,8 +290,11 @@ z-index:1000;
 <button onclick="applyMark('_')">_</button>
 <button onclick="applyMark('<')"><</button>
 <button onclick="applyMark('a')">a</button>
-<button onclick="deleteMark()">Hapus</button>d
+<button onclick="deleteMark()">none</button>
+<button onclick="handleEdit()">edit</button>
+<button onclick="handleDelete()">delete</button>
 <button onclick="closeMarkPopup()">✕</button>
+
 </div>
 
 
@@ -382,6 +386,8 @@ function deleteGulungan(pallet, index) {
   });
 }
 async function handleEdit(pallet, index) {
+  if(!pallet) pallet = currentPallet; index = currentIndex;
+
   const noGul = prompt("No Gul baru:");
   const seri = prompt("Seri baru:");
   const panjang = Number(prompt("Panjang baru (m):"));
@@ -396,6 +402,7 @@ async function handleEdit(pallet, index) {
 }
 
 async function handleDelete(pallet, index) {
+  if(!pallet) pallet = currentPallet; index = currentIndex;
   if (!confirm("Yakin hapus data ini?")) return;
   try {
     await deleteGulungan(pallet, index);
@@ -530,6 +537,7 @@ function applyMark(mark) {
   };
 }
 function deleteMark() {
+
   if (!currentPallet && currentIndex == null) return;
   const tx = db.transaction("pallets", "readwrite");
   const store = tx.objectStore("pallets");
@@ -765,9 +773,7 @@ function setMark(value) {
   // markInput.focus();
 }
 
-function deleteMark() {
-  document.getElementById("mark").value = "";
-}
+
 
 function showGulError(palletId, idx) {
   getAll().then((pallets) => {
