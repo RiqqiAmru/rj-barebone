@@ -51,8 +51,7 @@ function saveData(pallet, gulungan) {
       // ✅ 1. NO GUL kosong / 0 / x
       if (
         !gulungan.noGul ||
-        gulungan.noGul === "0" ||
-        gulungan.noGul.toLowerCase() === "x"
+        gulungan.noGul === "0" 
       ) {
         gulungan.errors.push({
           type: "NO_GUL",
@@ -151,8 +150,10 @@ async function renderList() {
     const hasError = p.gulungan.some(
       (g) => g.errors && g.errors.length > 0
     );
-
+let t = 0;
     const totals = getTotalPerBenang(pallets);
+    Object.keys(totals).map((key)=>
+     t +=totals[key].panjang)
     const totalContainer = document.getElementById("total-benang");
 
     totalContainer.innerHTML = `
@@ -166,7 +167,6 @@ async function renderList() {
 </tr>
 </thead>
 <tbody>
-
 ${Object.keys(totals)
 
   .map(
@@ -179,7 +179,11 @@ ${Object.keys(totals)
 `
   )
   .join("")}
-  
+  <tr>
+    <td ></td>
+    <td ></td>
+    <td style="border:1px solid  #ccc; "><strong>${t}</strong></td>
+  </tr>
 </tbody>
 </table>
 `;
@@ -312,11 +316,11 @@ document
       .getElementById("data-form"));
     e.preventDefault();
     const pallet = document.getElementById("pallet").value.trim();
-    const noGul = document.getElementById("noGul").value.trim();
-    const seri = document.getElementById("seri").value.trim();
+    const noGul = Number( document.getElementById("noGul").value.trim());
+    const seri = Number(document.getElementById("seri").value.trim());
     const panjang = Number(
       document.getElementById("panjang").value.trim()
-    );
+      );
     const markInput = document.querySelector('input[name="mark2"]:checked').value;
 
     // const markInput = document.getElementById("mark").value;
