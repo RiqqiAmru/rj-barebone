@@ -5,7 +5,11 @@ body {
 }
 form {
   display: grid;
+  grid-template-columns: repeat(3, 1fr);
   gap: 12px;
+  align-content: space-between;
+  justify-content: start;
+  justify-items: center;
 }
 label {
   display: grid;
@@ -243,5 +247,21 @@ strong {
 
 .radiogroup{
   display: flex;
-  justify-content: space-evenly;
+  grid-column:2/4;
+  width:100%;
+  justify-content: space-between;
+}
+
+#floating-form {
+  display: none;
+        position: fixed;
+        bottom: 80px;
+        right: 20px;
+        width: 80%;
+        background: #fff;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        padding: 12px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        z-index: 1000;
 }

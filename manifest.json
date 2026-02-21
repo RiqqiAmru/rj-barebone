@@ -2,7 +2,7 @@
     "name": "Pallet Manager",
     "short_name": "Pallet",
     "start_url": "./index.html",
-    "display": "fullscreen",
+    "display": "standalone",
     "background_color": "#ffffff",
     "theme_color": "#28a745",
     "icons": [
