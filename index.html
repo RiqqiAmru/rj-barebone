@@ -35,17 +35,7 @@
     <div
       id="floating-form"
       style="
-        display: none;
-        position: fixed;
-        bottom: 80px;
-        right: 20px;
-        width: 260px;
-        background: #fff;
-        border: 1px solid #ccc;
-        border-radius: 8px;
-        padding: 12px;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-        z-index: 1000;
+        
       "
     >
       <!-- <div class="mark-buttons">
@@ -56,37 +46,37 @@
       </div> -->
 
       <form id="data-form">
-        <input
-          id="pallet"
-          placeholder="Pallet"
-          style="width: 100%; margin-bottom: 6px"
-          required
-        />
-        <div class="radiogroup">
-          <div>
-            <input type="radio" name="mark2" id="_" value="_">
-            <label for="_">_</label>
+          <input
+            id="pallet"
+            placeholder="Pallet"
+            style="width: 80%; margin-bottom: 6px"
+            required
+          />
+          <div class="radiogroup">
+            <div>
+              <input type="radio" name="mark2" id="_" value="_">
+              <label for="_">_</label>
+            </div>
+            <div class="div">
+              <input type="radio" name="mark2" id=">" value=">">
+            <label for=">">></label>
+            </div>
+            <div class="div">
+              <input type="radio" name="mark2" id="a" value="a">
+            <label for="a">a</label>
+            </div>
+            <div class="div">
+              <input type="radio" name="mark2" id="none" value=""  checked>
+            <label for="none">none</label>
+            </div>
           </div>
-          <div class="div">
-            <input type="radio" name="mark2" id=">" value=">">
-          <label for=">">></label>
-          </div>
-          <div class="div">
-            <input type="radio" name="mark2" id="a" value="a">
-          <label for="a">a</label>
-          </div>
-          <div class="div">
-            <input type="radio" name="mark2" id="none" value=""  checked>
-          <label for="none">none</label>
-          </div>
-        </div>
         
         <input
           id="noGul"
           type="number"
           maxlength="4"
           placeholder="No Gul"
-          style="width: 100%; margin-bottom: 6px"
+          style="width: 80%; margin-bottom: 6px"
           required
         />
         <input
@@ -94,7 +84,7 @@
           type="number"
           maxlength="3"
           placeholder="Seri"
-          style="width: 100%; margin-bottom: 6px"
+          style="width: 80%; margin-bottom: 6px"
           required
         />
         <input
@@ -102,7 +92,7 @@
           type="number"
           maxlength="3"
           placeholder="Panjang"
-          style="width: 100%; margin-bottom: 6px"
+          style="width: 80%; margin-bottom: 6px"
           required
         />
         <input id="mark" hidden />
@@ -208,6 +198,7 @@
         Batal
       </button>
     </div>
+    <div style="height: 1000px;"></div>
     <script src="./script.js"></script>
 
     <script src="./seri.js"></script>

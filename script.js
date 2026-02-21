@@ -160,7 +160,7 @@ let t = 0;
 
 <table style="width:100%; border-collapse: collapse; margin:12px;">
 <thead>
-<tr style="background:#eee;">
+<tr style="background:#eee;">     
   <th style="border:1px solid #ccc; ">Benang</th>
   <th style="border:1px solid #ccc; ">Total Gulung</th>
   <th style="border:1px solid #ccc; ">Total Panjang</th>
@@ -189,7 +189,7 @@ ${Object.keys(totals)
 `;
     div.className = "pallet";
     div.innerHTML = `
-  <div class="pallet-header 
+  <div id="${p.pallet.trim()}" class="pallet-header 
 ${hasError ? "pallet-error" : ""} 
 ${p.verifyStatus === "ok" ? "pallet-verified-ok" : ""} 
 ${p.verifyStatus === "error" ? "pallet-verified-error" : ""}" 
@@ -211,8 +211,8 @@ ${p.seriJenis || ""} ${
 </div>
 </strong>
 </div>
-<div class="pallet-body ${isActive ? "show" : "hide"}">
-<table style="width:60%; border-collapse: collapse; margin-top:8px;">
+<div class="pallet-body ${isActive ? "show" : "hide"}" id="body-${p.pallet.trim()}">
+<table style="width:60%; border-collapse: collapse; margin-top:8px;  margin-left:50px">
 <thead>
  <tr style="background:#eee;">
    <th style="border:1px solid #ccc; padding:6px;">No Gul</th>
@@ -315,7 +315,7 @@ document
     const data = new FormData(document
       .getElementById("data-form"));
     e.preventDefault();
-    const pallet = document.getElementById("pallet").value.trim();
+    const pallet = document.getElementById("pallet").value.trim().toUpperCase();
     const noGul = Number( document.getElementById("noGul").value.trim());
     const seri = Number(document.getElementById("seri").value.trim());
     const panjang = Number(
@@ -1170,3 +1170,20 @@ const form2 = document.getElementById('data-form');
       }
     });
   });
+
+  function scrollToElement(id) {
+    const element = document.getElementById(id);
+    if (element) {
+        element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+}
+
+document.getElementById("pallet").addEventListener('change',()=>{
+  let palletTitle = document.getElementById("pallet").value.trim().toUpperCase()
+  scrollToElement(palletTitle)
+  let body = document.getElementById(`body-${palletTitle}`)
+  console.log(body,palletTitle)
+
+  body.classList.add('show')
+}
+)
