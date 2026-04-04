@@ -723,7 +723,7 @@ document.getElementById("noGul").addEventListener("input", function () {
 });
 
 document.getElementById("seri").addEventListener("input", function () {
-  if (this.value.length >= 3) {
+  if (this.value.length >= 2) {
     document.getElementById("panjang").focus();
   }
 });

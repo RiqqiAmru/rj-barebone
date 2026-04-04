@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Camera Scanner with Anchors</title>
+  <style>
+    video, canvas { max-width: 100%; border: 1px solid #ccc; margin: 5px; }
+    #pages img { max-width: 300px; margin: 5px; border: 1px solid #999; }
+  </style>
+</head>
+<body>
+  <h2>Camera Scanner with Anchor Detection</h2>
+  <video id="video" autoplay playsinline></video>
+  <button id="capture">Capture & Detect</button>
+  <div id="pages"></div>
+
+  <!-- Load OpenCV.js -->
+  <script async src="https://docs.opencv.org/4.x/opencv.js"></script>
+  <script>
+    const video = document.getElementById('video');
+    const captureBtn = document.getElementById('capture');
+    const pagesDiv = document.getElementById('pages');
+    let pageCount = 0;
+
+    // Access camera
+    navigator.mediaDevices.getUserMedia({ video: true })
+      .then(stream => { video.srcObject = stream; })
+      .catch(err => console.error("Camera error:", err));
+
+    captureBtn.addEventListener('click', () => {
+      const canvas = document.createElement('canvas');
+      canvas.width = 640;
+      canvas.height = 480;
+      const ctx = canvas.getContext('2d');
+      ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+
+      // Convert to OpenCV Mat
+      let src = cv.imread(canvas);
+      let gray = new cv.Mat();
+      cv.cvtColor(src, gray, cv.COLOR_RGBA2GRAY, 0);
+
+      // Threshold to detect black anchors
+      let thresh = new cv.Mat();
+      cv.threshold(gray, thresh, 50, 255, cv.THRESH_BINARY_INV);
+
+      // Find contours
+      let contours = new cv.MatVector();
+      let hierarchy = new cv.Mat();
+      cv.findContours(thresh, contours, hierarchy, cv.RETR_EXTERNAL, cv.CHAIN_APPROX_SIMPLE);
+
+      // Assume anchors are largest square contours
+      let approxAnchors = [];
+      for (let i = 0; i < contours.size(); i++) {
+        let cnt = contours.get(i);
+        let rect = cv.boundingRect(cnt);
+        if (rect.width > 10 && rect.height > 10) {
+          approxAnchors.push(rect);
+        }
+      }
+
+      // For simplicity: just crop bounding box around all anchors
+      if (approxAnchors.length > 0) {
+        let minX = Math.min(...approxAnchors.map(r => r.x));
+        let minY = Math.min(...approxAnchors.map(r => r.y));
+        let maxX = Math.max(...approxAnchors.map(r => r.x + r.width));
+        let maxY = Math.max(...approxAnchors.map(r => r.y + r.height));
+
+        let cropped = src.roi(new cv.Rect(minX, minY, maxX - minX, maxY - minY));
+
+        // Save cropped image
+        pageCount++;
+        let outCanvas = document.createElement('canvas');
+        cv.imshow(outCanvas, cropped);
+        let img = document.createElement('img');
+        img.src = outCanvas.toDataURL('image/jpeg', 0.7);
+        img.alt = "Page " + pageCount;
+
+        const label = document.createElement('p');
+        label.textContent = "Page " + pageCount;
+        pagesDiv.appendChild(label);
+        pagesDiv.appendChild(img);
+
+        cropped.delete();
+      }
+
+      // Cleanup
+      src.delete(); gray.delete(); thresh.delete(); contours.delete(); hierarchy.delete();
+    });
+  </script>
+</body>
+</html>
