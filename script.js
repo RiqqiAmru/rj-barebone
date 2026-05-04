@@ -717,7 +717,7 @@ function togglePallet(palletName) {
 }
 
 document.getElementById("noGul").addEventListener("input", function () {
-  if (this.value.length >= 4) {
+  if (this.value.length >= 5) {
     document.getElementById("seri").focus();
   }
 });
