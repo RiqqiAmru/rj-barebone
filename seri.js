@@ -83,7 +83,11 @@ const SERI_MASTER = {
 "52":"SKB10",
 "53":"SKB10",
 "54":"SKB10",
-  
+  "55":"SKB10",
+  "56":"SKB10",
+  "57":"SKB10",
+  "58":"SKB10",
+  "59":"SKB10",
   };
   
   // Fungsi untuk ambil jenis seri
