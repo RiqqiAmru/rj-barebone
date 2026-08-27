@@ -82,9 +82,9 @@ const SERI_MASTER = {
   "80":"SB",
   "81":"SB",
   "82":"SB",
-  "83":"SB",
-  "84":"BT",
-  "85":"BT",
+  "83":"SB PM",
+  "84":"BATI",
+  "85":"BATI",
   "86":"",
   "87":"SKB",
   "88":"SKB",
@@ -107,8 +107,15 @@ const SERI_MASTER = {
   "105":"SKB",
   "106":"SKB",
   "107":"SKB",
-  "108":"SKB",
+  "108":"SKB PM",
   "109":"SKB",
+  "110":"SKB PEP",
+  "111":"SKB PEP",
+  "112":"SKB PEP",
+  "113":"SKB PM",
+  "114":"SKB PM",
+  "115":"SKB PM",
+  
   };
   
   // Fungsi untuk ambil jenis seri
