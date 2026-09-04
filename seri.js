@@ -115,6 +115,12 @@ const SERI_MASTER = {
   "113":"SKB PM",
   "114":"SKB PM",
   "115":"SKB PM",
+  "116":"PEP56 SKB PM",
+  "117":"PEP56 SKB PM",
+  "118":"SKB PM 18R",
+  "119":"SKB PM 18R",
+  "120":"SKB PM 18R",
+  "121":"SKB PM 18R",
   
   };
   
